@@ -1,0 +1,19 @@
+/* CSS */
+
+/* :root {
+  --colour: red;
+}
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.test {
+  color: var(--colour);
+  font-size: 10em;
+}

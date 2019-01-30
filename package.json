@@ -1,0 +1,32 @@
+{
+  "name": "wikimap",
+  "version": "1.0.0",
+  "description": "Wiki Mapper",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tforward/wikiMap.git"
+  },
+  "keywords": [
+    "Wiki",
+    "Map"
+  ],
+  "author": "Tristan Forward",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tforward/wikiMap/issues"
+  },
+  "homepage": "https://github.com/tforward/wikiMap#readme",
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "prettier": "^1.16.1"
+  }
+}

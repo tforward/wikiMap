@@ -1,0 +1,48 @@
+{
+  "name": "tracata",
+  "version": "1.0.0",
+  "description": "Responsive CSS Grid",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tforward/Tracata.git"
+  },
+  "keywords": [
+    "CSS",
+    "Grid",
+    "Responsive"
+  ],
+  "author": "Tristan Forward",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tforward/Tracata/issues"
+  },
+  "homepage": "https://github.com/tforward/Tracata#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.0",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "file-loader": "^2.0.0",
+    "image-webpack-loader": "^4.3.1",
+    "prettier": "^1.14.3",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
+  }
+}
