@@ -7,7 +7,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
   mode: "production",
   entry: {
-    app: "./src/scripts/script.js"
+    app: "./src/scripts/index.js"
   },
   devtool: "source-map",
   plugins: [

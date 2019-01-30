@@ -1,4 +1,7 @@
+"use strict";
+
 import css_ from "../css/styles.css";
+import loadLeaflet from "./leafletMap";
 
 const myApp = Object.create(null);
 // ======================================================================
@@ -6,7 +9,11 @@ const myApp = Object.create(null);
 // ======================================================================
 
 myApp.main = function main() {
-	// Start here
+  // Start here
+
+  // Maybe Flex for map sizing as better support than Grid
+  // https://codepen.io/tforward/pen/JJxYor?editors=0110
+  loadLeaflet(45.44, 12.34);
 };
 
 // Handler when the DOM is fully loaded

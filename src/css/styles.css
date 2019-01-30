@@ -13,7 +13,21 @@ body {
   margin: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 .test {
   color: var(--colour);
   font-size: 10em;
+}
+
+.map-frame {
+  padding: 1em;
+  height: 60vh;
+}
+
+#mapid { 
+  height: 100%; 
+  display: block;
 }
