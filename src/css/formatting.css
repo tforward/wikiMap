@@ -1,0 +1,27 @@
+/*=============================================
+|    Formatting                                  
+===============================================*/
+
+.floatR {
+    float: right;
+}
+
+.pad-7-3 {
+    padding: 7px 3px;
+}
+
+.pad-0 {
+    padding: 0;
+}
+
+.noTextDecor {
+    text-decoration: none;
+}
+
+/*=============================================
+|    Typographical                                
+===============================================*/
+
+.noBulletPtns {
+    list-style-type: none;
+}
