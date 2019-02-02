@@ -1,34 +1,40 @@
 import constant from "./fpUtils";
 
-// const result = asyncFetch(
-//     "https://api.github.com/users/chriscoyier/repos"
-//   );
+const R = require("ramda");
 
-export default async function asyncFetch(url) {
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      // Here's a list of repos!
-      return data;
-    });
+export function log(msg) {
+  console.log(msg);
 }
 
-function returnJson(response) {
-  return response.json();
+function rtnData(data) {
+  return data;
 }
 
-const rtnJson = resp => resp.json();
-const getJson = pipe(
+function retriveJson(resp) {
+  return resp.json();
+}
+
+const printKeyConcatValue = (value, key) => `${2}:${value}`;
+
+function processData(data) {
+  // console.log(R.prop("id", data[0]));
+  console.log(R.forEachObjIndexed(printKeyConcatValue, data)); //= > {x: 1, y: 2}  );
+  // console.log(R.map(R.prop("id"), data));
+  // return
+}
+
+const rtnJson = R.pipe(
   fetch,
-  then(rtnJson)
+  R.then(retriveJson),
+  R.then(processData)
 );
 
-const fetchUrl = pipe(
-  getJson,
-  R.then(console.log)
-);
+export const fetchJsonFrom = rtnJson;
 
-fetchUrl("https://api.github.com/users/chriscoyier/repos");
+// const url = "https://api.github.com/users/chriscoyier/repos";
+
+// fetchJsonFrom(url)
+// fetchUrl("https://api.github.com/users/chriscoyier/repos");
 
 // https://ramdajs.com/repl/#?console.clear%28%29%3B%0A%0Aconst%20urls%20%3D%20%5B%0A%20%20%27https%3A%2F%2Fapi.github.com%2Fusers%2Fchriscoyier%2Frepos%27%0A%5D%0A%0Aconst%20then%20%3D%20fn%20%3D%3E%20pr%20%3D%3E%20pr.then%28fn%29%0Aconst%20json%20%3D%20resp%20%3D%3E%20resp.json%28%29%0Aconst%20get%20%3D%20compose%28then%28json%29%2C%20fetch%29%0Aconst%20prAll%20%3D%20ps%20%3D%3E%20Promise.all%28ps%29%20%2F%2F%20or%20prAll%20%3D%20Promise.all.bind%28Promise%29%0A%0Aconst%20run%20%3D%20pipe%28%0A%20%20map%28get%29%2C%0A%20%20prAll%2C%0A%20%20then%28map%28length%29%29%2C%0A%20%20then%28console.log%29%2C%0A%29%0Arun%28urls%29
 
