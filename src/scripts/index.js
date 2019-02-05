@@ -4,7 +4,7 @@ import css_styles from "../css/styles.css";
 import css_formatting from "../css/formatting.css";
 import css_alignment from "../css/alignment.css";
 import loadLeaflet from "./leafletMap";
-import { fetchJsonFrom, log } from "./data";
+import { fetchJsonFrom } from "./data";
 
 const R = require("ramda");
 
@@ -22,13 +22,9 @@ myApp.main = function main() {
 
   const url1 = "https://api.github.com/users/chriscoyier/repos";
   const url =
-    "https://en.wikipedia.org/w/api.php?&origin=*&action=query&format=json&list=geosearch&gsprop=type|name|dim|country|region|globe&gsbbox=45.5%7C12.2%7C45.4%7C12.3&gslimit=20";
+    "https://en.wikipedia.org/w/api.php?&origin=*&action=query&format=json&list=geosearch&gsprop=type|name|dim|country|region|globe&gsbbox=45.5%7C12.2%7C45.4%7C12.3&gsradius=2000&gslimit=500";
 
   const reposList = fetchJsonFrom(url);
-
-  const result = reposList;
-
-  // console.log("R: ", result);
 
   // log(x(url));
 
