@@ -1,6 +1,8 @@
+import { map } from "leaflet";
 import constant from "./fpUtils";
+import addGeoJsonToMap from "./leafletMap";
 
-import { pointFeature, testPnts } from "./typesGeojson";
+import { pointFeature, featureCollection } from "./typesGeojson";
 
 const R = require("ramda");
 
@@ -43,26 +45,21 @@ function toPntFeature(data) {
   });
 }
 
-function toFeatureCollection(data) {
-  const newPnts = Object.assign(testPnts);
-  newPnts.features = data;
-  return newPnts;
-}
-
-const rtnJson = R.pipe(
+const rtnFeatureCollection = R.pipe(
   fetch,
   R.then(retriveJson),
   R.then(listGeosearch),
   R.then(pickProps),
   R.then(R.map(addUrlProp)),
   R.then(R.map(toPntFeature)),
-  R.then(toFeatureCollection),
-  // Here adding feature collection to map
-  //
-  console.log
+  R.then(featureCollection)
 );
 
-export const fetchJsonFrom = rtnJson;
+// https://github.com/KoRiGaN/Vue2Leaflet/issues/28
+
+//
+
+export const fetchJsonFrom = rtnFeatureCollection;
 
 // https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
 // https://blogs.windows.com/msedgedev/2016/05/24/fetch-and-xhr-limitations/#wyZ8BREdhyRMFKmi.97

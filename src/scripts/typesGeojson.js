@@ -1,15 +1,9 @@
-const R = require("ramda");
-
-export function featureCollection(name, feats = []) {
+export function featureCollection(feats = []) {
   return {
-    layer: name,
     type: "FeatureCollection",
     features: feats
   };
 }
-
-const curryFeatureCollection = R.curry(featureCollection);
-export const testPnts = curryFeatureCollection("TestPnts");
 
 export function pointFeature(id, lat, lon, props = {}) {
   return {
