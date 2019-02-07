@@ -1,16 +1,13 @@
 "use strict";
 
 import { map } from "leaflet";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import css_styles from "../css/styles.css";
 import css_formatting from "../css/formatting.css";
 import css_alignment from "../css/alignment.css";
-import loadLeaflet from "./leafletMap";
+import { loadLeaflet, makeMapMarker } from "./leafletMap";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.min";
 import { fetchJsonFrom } from "./data";
-
-import markIcon from "../Images/marker-icon.png";
-import markShadow from "../Images/marker-shadow.png";
-
-// import addGeoJsonToMap from "./leafletMap";
 
 const R = require("ramda");
 
@@ -33,6 +30,7 @@ myApp.main = function main() {
 
   const test = R.pipe(
     fetchJsonFrom,
+    R.then(addMapMarkers),
     R.then(addToMap),
     console.log
   );
@@ -40,8 +38,16 @@ myApp.main = function main() {
   test(url);
 };
 
-function addToMap(data) {
-  L.geoJSON(data).addTo(myApp.map);
+function addMapMarkers(pointsCollection) {
+  return L.geoJson(pointsCollection, {
+    pointToLayer(feature) {
+      return makeMapMarker(feature);
+    }
+  });
+}
+
+function addToMap(layer) {
+  return layer.addTo(myApp.map);
 }
 
 // Handler when the DOM is fully loaded

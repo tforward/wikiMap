@@ -1,9 +1,9 @@
 "use strict";
 
 import { map } from "leaflet";
-import { leaflet_css } from "../../node_modules/leaflet/dist/leaflet.css";
+import "../../node_modules/leaflet/dist/leaflet.css";
 
-export default function loadLeaflet(x, y) {
+export function loadLeaflet(x, y) {
   const OpenStreetMapHot = L.tileLayer(
     "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
     {
@@ -18,6 +18,19 @@ export default function loadLeaflet(x, y) {
   return myMap;
 }
 
-export function addGeoJsonToMap(pointFeatures) {
-  return L.geoJSON(pointFeatures);
+export function makeMapMarker(feature) {
+  return L.marker(
+    [feature.geometry.coordinates[1], feature.geometry.coordinates[0]],
+    {
+      title: feature.properties.title,
+      riseOnHover: true,
+      riseOffset: 250
+    }
+  )
+    .bindPopup(
+      `<a target='_blank' href=${feature.properties.url}>${
+        feature.properties.title
+      }</a><p>Type: ${feature.properties.category} </p>`
+    )
+    .openPopup();
 }

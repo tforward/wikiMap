@@ -2,25 +2,28 @@ import { map } from "leaflet";
 import constant from "./fpUtils";
 import addGeoJsonToMap from "./leafletMap";
 
-import { pointFeature, featureCollection } from "./typesGeojson";
+import {
+  configPntFeature,
+  pointFeature,
+  featureCollection,
+  addProperties
+} from "./typesGeojson";
 
 const R = require("ramda");
-
-function rtnData(data) {
-  return data;
-}
 
 function retriveJson(resp) {
   return resp.json();
 }
 
+// Refactor args
 function listGeosearch(data) {
   const dataList = [...data.query.geosearch];
   return dataList;
 }
 
-function concatUrl(url, data) {
-  return R.concat(url, data.toString());
+// Move to main as is program specific
+function concatUrl(url, id) {
+  return R.concat(url, id.toString());
 }
 
 const currConcatUrl = R.curry(concatUrl);
@@ -33,31 +36,24 @@ function mapPickProps(props, list) {
 const currPickProps = R.curry(mapPickProps);
 const pickProps = currPickProps(["pageid", "title", "type", "lat", "lon"]);
 
+// https://www.mediawiki.org/wiki/Extension:GeoData#Usage
+
 function addUrlProp(obj) {
   return R.assoc("url", propWikiUrlID(obj.pageid), obj);
 }
 
-function toPntFeature(data) {
-  return pointFeature(data.pageid, data.lat, data.lon, {
-    title: data.title,
-    url: data.url,
-    type: data.type
-  });
-}
-
+// TODO Look at refactoring the R.maps into one?
 const rtnFeatureCollection = R.pipe(
   fetch,
   R.then(retriveJson),
   R.then(listGeosearch),
   R.then(pickProps),
   R.then(R.map(addUrlProp)),
-  R.then(R.map(toPntFeature)),
+  R.then(R.map(configPntFeature)),
+  R.then(R.map(pointFeature)),
+  R.then(R.map(addProperties)),
   R.then(featureCollection)
 );
-
-// https://github.com/KoRiGaN/Vue2Leaflet/issues/28
-
-//
 
 export const fetchJsonFrom = rtnFeatureCollection;
 
