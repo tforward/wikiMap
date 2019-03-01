@@ -5,7 +5,7 @@
 export function geoDataTypeName() {
   return {
     country: "Country",
-    satellite: "Satelite",
+    satellite: "Satellite",
     state: "State",
     adm1st: "Adm 1st Tier",
     adm2nd: "Adm 2nd Tier",

@@ -1,5 +1,4 @@
 import { map } from "leaflet";
-import constant from "./fpUtils";
 import addGeoJsonToMap from "./leafletMap";
 
 import {
@@ -11,14 +10,13 @@ import {
 
 const R = require("ramda");
 
-function retriveJson(resp) {
-  return resp.json();
+function retriveJson(response) {
+  return response.json();
 }
 
 // Refactor args
-function listGeosearch(data) {
-  const dataList = [...data.query.geosearch];
-  return dataList;
+function returnQuery(data) {
+  return data.query;
 }
 
 // Move to main as is program specific
@@ -29,12 +27,31 @@ function concatUrl(url, id) {
 const currConcatUrl = R.curry(concatUrl);
 const propWikiUrlID = currConcatUrl("https://en.wikipedia.org/?curid=");
 
-function mapPickProps(props, list) {
-  return R.map(R.pick(props), list);
+function pickProps(list) {
+  // Ramda
+  // forEachObjIndexed
+  // mergeWithKey
+  const geoSearchProps = [
+    "pageid",
+    "type",
+    "lat",
+    "lon",
+    "dim",
+    "dist",
+    "name",
+    "region",
+    "country"
+  ];
+  // set the keys to the pageId, then merge both objects based on id
+  // pop the pageId, make new object with pageid as the key, then
+  // assign the remaing values [key] = array
+  const pagesProps = ["pageid", "title", "extract", "thumbnail"];
+  const geoObj = R.map(R.pick(geoSearchProps), list.geosearch);
+  const pagesObj = R.map(R.pick(pagesProps), list.pages);
+  console.log(geoObj);
+  // console.log(pagesObj);
+  return R.map(R.pick(geoSearchProps), list);
 }
-
-const currPickProps = R.curry(mapPickProps);
-const pickProps = currPickProps(["pageid", "title", "type", "lat", "lon"]);
 
 // https://www.mediawiki.org/wiki/Extension:GeoData#Usage
 
@@ -46,7 +63,7 @@ function addUrlProp(obj) {
 const rtnFeatureCollection = R.pipe(
   fetch,
   R.then(retriveJson),
-  R.then(listGeosearch),
+  R.then(returnQuery),
   R.then(pickProps),
   R.then(R.map(addUrlProp)),
   R.then(R.map(configPntFeature)),
@@ -56,7 +73,3 @@ const rtnFeatureCollection = R.pipe(
 );
 
 export const fetchJsonFrom = rtnFeatureCollection;
-
-// https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
-// https://blogs.windows.com/msedgedev/2016/05/24/fetch-and-xhr-limitations/#wyZ8BREdhyRMFKmi.97
-// https://css-tricks.com/using-fetch/
