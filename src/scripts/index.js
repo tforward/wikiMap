@@ -21,12 +21,14 @@ myApp.main = function main() {
 
   // Maybe Flex for map sizing as better support than Grid
   // https://codepen.io/tforward/pen/JJxYor?editors=0110
-  myApp.map = loadLeaflet(45.44, 12.34, 11);
+  const lat = 45.44;
+  const lon = 12.34;
+  // Max 20
+  const recordLimit = 20;
 
-  // "https://en.wikipedia.org/w/api.php?&origin=*&action=query&format=json&prop=coordinates%7Cpageimages%7Cdescription&titles=Main%20Page&generator=geosearch&colimit=50&coprop=globe%7Ctype%7Cname%7Cdim%7Ccountry%7Cregion&coprimary=primary&pilimit=50&pithumbsize=240&descprefersource=central&ggscoord=40%7C0&ggsradius=10000&ggslimit=50&ggsprop=globe%7Cname%7Cdim%7Ccountry%7Cregion%7Ctype";
+  myApp.map = loadLeaflet(lat, lon, 11);
 
-  const url =
-    "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages%7Cextracts&list=geosearch&generator=geosearch&utf8=1&piprop=thumbnail%7Cname&pithumbsize=240&pilimit=50&exsentences=1&exintro=1&explaintext=1&gscoord=45%7C12&gsradius=10000&gslimit=50&gsprop=globe%7Ctype%7Cname%7Cdim%7Ccountry%7Cregion&ggscoord=45%7C12&ggsradius=10000&ggslimit=20&ggsprop=globe%7Ctype%7Cname%7Cdim%7Ccountry%7Cregion";
+  const query = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages%7Cextracts&list=geosearch&generator=geosearch&utf8=1&piprop=thumbnail%7Cname&pithumbsize=240&pilimit=${recordLimit}&exsentences=1&exintro=1&explaintext=1&gscoord=${lat}%7C${lon}&gsradius=10000&gslimit=${recordLimit}&gsprop=globe%7Ctype%7Cname%7Cdim%7Ccountry%7Cregion&ggscoord=${lat}%7C${lon}&ggsradius=10000&ggslimit=${recordLimit}&ggsprop=globe%7Ctype%7Cname%7Cdim%7Ccountry%7Cregion`;
 
   const addMarkersToMap = R.pipe(
     fetchJsonFrom,
@@ -34,7 +36,7 @@ myApp.main = function main() {
     R.then(addToMap)
   );
 
-  addMarkersToMap(url);
+  addMarkersToMap(query);
 };
 
 function addMapMarkers(pointsCollection) {

@@ -20,7 +20,7 @@ export function geoDataTypeName() {
     glacier: "Glacier",
     airport: "Airport",
     railwaystation: "Station",
-    edu: "Edu",
+    edu: "Education",
     pass: "Pass",
     camera: "Camera",
     landmark: "Landmark"

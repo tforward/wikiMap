@@ -1,6 +1,8 @@
 import { geoDataTypeName } from "./typesGeoData";
 
 export function featureCollection(feats = []) {
+  console.log(feats[0]);
+  console.log(feats[0].properties);
   return {
     type: "FeatureCollection",
     features: feats
@@ -24,7 +26,9 @@ export function pointFeature({
   };
 }
 
+const geoTypes = geoDataTypeName();
 // If you data is structured differently change/add it here:
+// Properties can be extended
 export function configPntFeature(data) {
   return {
     id: data.pageid,
@@ -32,15 +36,15 @@ export function configPntFeature(data) {
     lon: data.lon,
     properties: {
       title: data.title,
+      category: geoTypes[data.type],
+      region: data.region,
+      description: data.extract,
+      lat: data.lat,
+      lon: data.lon,
+      distance: data.dist,
+      size: data.dim,
       url: data.url,
-      type: data.type
+      thumbnail: data.thumbnail
     }
   };
-}
-
-const geoTypes = geoDataTypeName();
-
-export function addProperties(data) {
-  data.properties.category = geoTypes[data.properties.type];
-  return data;
 }
