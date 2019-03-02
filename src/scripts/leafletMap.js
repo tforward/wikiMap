@@ -18,22 +18,25 @@ export function loadLeaflet(x, y, zoom) {
   return myMap;
 }
 
-export function makeMapMarker(feature) {
+export function makeMapMarker(f) {
+  console.log(f);
   return (
-    L.marker(
-      [feature.geometry.coordinates[1], feature.geometry.coordinates[0]],
-      {
-        title: feature.properties.title,
-        alt: feature.properties.title,
-        riseOnHover: true,
-        riseOffset: 250
-      }
-    )
+    L.marker([f.geometry.coordinates[1], f.geometry.coordinates[0]], {
+      title: f.properties.title,
+      alt: f.properties.title,
+      riseOnHover: true,
+      riseOffset: 250
+    })
       // TODO: Type of undefined handle
       .bindPopup(
-        `<a target='_blank' href=${feature.properties.url}>${
-          feature.properties.title
-        }</a><p>Type: ${feature.properties.category} </p>`
+        `<a target='_blank' href=${f.properties.url}>${f.properties.title}
+        <img src=${
+          f.properties.thumbnail.source
+        } alt="Smiley face" height=${
+          f.properties.thumbnail.height
+        } width=${f.properties.thumbnail.width}></a>
+        <p>${f.properties.description} </p>
+        <p>Type: ${f.properties.category} </p>`
       )
       .openPopup()
   );
