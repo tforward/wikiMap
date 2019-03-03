@@ -1,14 +1,15 @@
 import { map } from "leaflet";
-import addGeoJsonToMap from "./leafletMap";
+
 
 import {
   configPntFeature,
   pointFeature,
-  featureCollection,
-  addProperties
+  featureCollection
 } from "./typesGeojson";
 
 const R = require("ramda");
+
+
 
 function retriveJson(response) {
   return response.json();

@@ -1,8 +1,8 @@
 import { geoDataTypeName } from "./typesGeoData";
 
 export function featureCollection(feats = []) {
-  console.log(feats[0]);
-  console.log(feats[0].properties);
+  // console.log(feats[0]);
+  // console.log(feats[0].properties);
   return {
     type: "FeatureCollection",
     features: feats
