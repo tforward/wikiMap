@@ -1,6 +1,5 @@
 import { map } from "leaflet";
 
-
 import {
   configPntFeature,
   pointFeature,
@@ -9,24 +8,32 @@ import {
 
 const R = require("ramda");
 
-
-
 function retriveJson(response) {
   return response.json();
 }
 
-// Refactor args
 function returnQuery(data) {
-  return data.query;
+  const records = noRecords(data.query);
+  return records;
 }
 
-// Move to main as is program specific
+function noRecords(query) {
+  if (query.geosearch.length === 0) {
+    alert(
+      "The World is a BIG place and there are no Wiki entries here, just yet... Try clicking elsewhere on the map."
+    );
+    return Promise.reject();
+  }
+  return query;
+}
+
 function concatUrl(url, id) {
   return R.concat(url, id.toString());
 }
 
 const currConcatUrl = R.curry(concatUrl);
 const propWikiUrlID = currConcatUrl("https://en.wikipedia.org/?curid=");
+const allPageIds = initPageIds();
 
 function pickAndMergeProps(list) {
   const geoSearchProps = [
@@ -41,10 +48,43 @@ function pickAndMergeProps(list) {
     "country"
   ];
   const pagesProps = ["pageid", "title", "extract", "thumbnail"];
+
+  const idsArray = allPageIds(list.pageids);
+  const idsToAdd = idsArray[1];
+
   const geoArry = R.map(R.pick(geoSearchProps), list.geosearch);
   const pagesObj = R.map(R.pick(pagesProps), list.pages);
+
   const geoObjId = arrayToObjID(geoArry);
-  return R.mergeDeepRight(geoObjId, pagesObj);
+  const mergedResults = R.mergeDeepRight(geoObjId, pagesObj);
+  return R.pick(idsToAdd, mergedResults);
+}
+
+function initPageIds() {
+  const allIds = [];
+  let init = true;
+
+  function addIds(ids) {
+    const newIds = [];
+    if (allIds.length === 0) {
+      Array.prototype.push.apply(allIds, ids);
+    } else {
+      for (let i = 0; i < ids.length; i += 1) {
+        const id = ids[i];
+        if (allIds.includes(id) === false) {
+          allIds.push(id);
+          newIds.push(id);
+        }
+      }
+    }
+    // On init just return allIds
+    if (init) {
+      init = false;
+      return [allIds, allIds];
+    }
+    return [allIds, newIds];
+  }
+  return addIds;
 }
 
 function arrayToObjID(array) {

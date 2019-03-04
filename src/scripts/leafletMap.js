@@ -36,7 +36,7 @@ function definePopup(f) {
     .setContent(`<a target='_blank' href=${f.properties.url}>${
     f.properties.title
   }
-  <br></br>${formatThumbnail(f)}
+  ${formatThumbnail(f)}
   <p>${f.properties.description} </p>
   <table>
     ${formatCategory(f)}
@@ -47,7 +47,7 @@ function definePopup(f) {
 
 function formatThumbnail(f) {
   if (f.properties.thumbnail !== undefined) {
-    return `<img class="thumbnail center-align" src=${
+    return `<br></br><img class="thumbnail center-align" src=${
       f.properties.thumbnail.source
     } alt="Smiley face" height=${f.properties.thumbnail.height} width=${
       f.properties.thumbnail.width
