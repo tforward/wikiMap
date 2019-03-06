@@ -26,9 +26,10 @@
   },
   "homepage": "https://github.com/tforward/wikiMap#readme",
   "dependencies": {
+    "leaflet": "^1.4.0",
     "leaflet-defaulticon-compatibility": "^0.1.1",
-    "ramda": "^0.26.1",
-    "leaflet": "^1.4.0"
+    "leaflet.locatecontrol": "^0.66.2",
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "css-loader": "^2.1.0",

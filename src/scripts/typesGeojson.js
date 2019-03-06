@@ -1,8 +1,8 @@
+"use strict";
+
 import { geoDataTypeName } from "./typesGeoData";
 
 export function featureCollection(feats = []) {
-  // console.log(feats[0]);
-  // console.log(feats[0].properties);
   return {
     type: "FeatureCollection",
     features: feats

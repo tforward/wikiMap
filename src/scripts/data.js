@@ -1,3 +1,5 @@
+"use strict";
+
 import { map } from "leaflet";
 
 import {
@@ -96,8 +98,6 @@ function iteratorID(obj, value) {
   return obj;
 }
 
-// https://www.mediawiki.org/wiki/Extension:GeoData#Usage
-
 function addUrlProp(obj) {
   return R.assoc("url", propWikiUrlID(obj.pageid), obj);
 }
@@ -106,7 +106,6 @@ function objToArrayOfObjs(data) {
   return R.values(data);
 }
 
-// TODO Look at refactoring the R.maps into one?
 const rtnFeatureCollection = R.pipe(
   fetch,
   R.then(retriveJson),
