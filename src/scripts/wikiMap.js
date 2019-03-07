@@ -9,14 +9,28 @@ const markerShadow = require("../images/marker-shadow.png");
 
 export function initWikiMap({ lat, lon, recordLimit, myMap }) {
   queryWiki({ lat, lon, recordLimit, myMap });
-  myMap.on("click", onMapClick);
+  myMap.on("click", getRecordsHere);
+  myMap.on("locationfound", getRecordsHere);
+  myMap.on("popupopen", getRecordsHere);
 
-  function onMapClick(e) {
-    const lat = e.latlng.lat;
-    const lon = e.latlng.lng;
+  function getRecordsHere(e) {
+    const [lat, lon] = getLatLon(e);
     queryWiki({ lat, lon, recordLimit, myMap });
     return [lat, lon];
   }
+}
+
+function getLatLon(e) {
+  let lat = 0;
+  let lon = 0;
+  if (e.popup) {
+    lat = e.popup._latlng.lat;
+    lon = e.popup._latlng.lng;
+  } else {
+    lat = e.latlng.lat;
+    lon = e.latlng.lng;
+  }
+  return [lat, lon];
 }
 
 export function queryWiki({ lat, lon, recordLimit, myMap }) {
