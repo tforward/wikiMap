@@ -8,6 +8,7 @@ wikiMap
    -  HTML/CSS Auto-BUILD (Currently Manual)
    -  Tree shaking (Size 256kb Currently)
    -  Link to GitHub Readme Page on the map
+   -  Add into Portfolio
 
 -  Click map for features (DONE)
    -  Exclude existing Results from Search (DONE)
