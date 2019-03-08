@@ -17,9 +17,9 @@ const myApp = Object.create(null);
 myApp.main = function main() {
   // Maybe Flex for map sizing as better support than Grid
   // https://codepen.io/tforward/pen/JJxYor?editors=0110
-  const lat = 45.44;
+  const lat = 45.434;
   const lon = 12.34;
-  const zoom = 15;
+  const zoom = 17;
 
   // Max Record Limit is 20
   const recordLimit = 20;

@@ -33,8 +33,6 @@ export function loadLeaflet(x, y, zoom) {
   return myMap;
 }
 
-
-
 export function makeMapMarker(f) {
   return L.marker([f.geometry.coordinates[1], f.geometry.coordinates[0]], {
     title: f.properties.title,
@@ -58,7 +56,6 @@ function definePopup(f) {
     ${formatCategory(f)}
     ${formatLatLon(f)}
   </table>`);
-  
   return popup;
 }
 

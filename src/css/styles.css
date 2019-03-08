@@ -1,42 +1,55 @@
 /* CSS */
 
-/* :root {
-  --colour: red;
-}
- */
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
 }
 
-html, body {
+.container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+ }
+ 
+.header {
+  flex: 0;
+  padding: 0 1em;
 }
 
+/* Map */
+.map-container {
+  height: 100%;
+  padding: 1px 2vmin 2vmin 2vmin;
+}
 .map-frame {
-  padding: 1px;
-  margin: 1em;
-  height: 40rem;
-  background-color: black;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+}
+
+/* Support for None Flex browsers ( Very Small Amount )
+ Will at least render, users have to scroll map abit. */
+@supports (display: flex) {
+  .map-container {
+    display: flex;
+    flex: 1 0 auto;
+    height: 0;
+  }
+
+  .map-frame {
+    flex: 1 0 auto;
+  }
 }
 
 #mapid { 
-  height: 100%; 
-  display: block;
+  height: 100%;
 }
 
-.thumbnail {
-  display: block
-}
-
-.center-align {
-  margin: 0 auto;
-}
-
+/* Leaflet pop-up */
 .locate-map-marker {
   display: block;
   width: 100%;
@@ -44,6 +57,18 @@ html, body {
   background: url("../images/map-marker-alt-solid.svg") no-repeat center;
   background-size: 42%;
 }
+
+.thumbnail {
+  display: block
+}
+
+/* Utility */
+.center-align {
+  margin: 0 auto;
+}
+
+
+
 
 
 
