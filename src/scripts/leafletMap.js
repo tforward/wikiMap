@@ -2,11 +2,8 @@
 
 import { map } from "leaflet";
 import "../../node_modules/leaflet/dist/leaflet.css";
-
 import "../../node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css";
-
 import { locate } from "../../node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min";
-
 import { visitedMarkerMoreResults } from "./wikiMap";
 
 const R = require("ramda");

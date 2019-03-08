@@ -1,7 +1,5 @@
 "use strict";
 
-import { map } from "leaflet";
-
 import {
   configPntFeature,
   pointFeature,

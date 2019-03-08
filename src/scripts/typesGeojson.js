@@ -2,7 +2,7 @@
 
 import { geoDataTypeName } from "./typesGeoData";
 
-export function featureCollection(feats = []) {
+export function featureCollection(feats) {
   return {
     type: "FeatureCollection",
     features: feats
