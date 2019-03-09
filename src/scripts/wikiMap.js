@@ -1,8 +1,9 @@
 "use strict";
 
+import * as R from "ramda"
 import { fetchJsonFrom } from "./data";
 import { addMapMarkers, addToMap } from "./leafletMap";
-import * as R from "ramda"
+
 
 const visitedMarkerPng = require("../images/visited-marker-icon.png");
 const markerShadow = require("../images/marker-shadow.png");
