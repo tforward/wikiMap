@@ -6,7 +6,7 @@ import {
   featureCollection
 } from "./typesGeojson";
 
-const R = require("ramda");
+import * as R from "ramda"
 
 function retriveJson(response) {
   return response.json();

@@ -1,7 +1,8 @@
 /* CSS */
 
 *, *::before, *::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html, body {
@@ -10,13 +11,20 @@ html, body {
 }
 
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   height: 100%;
  }
  
 .header {
-  flex: 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
   padding: 0 1em;
 }
 
@@ -35,13 +43,19 @@ html, body {
  Will at least render, users have to scroll map abit. */
 @supports (display: flex) {
   .map-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex: 1 0 auto;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
     height: 0;
   }
 
   .map-frame {
-    flex: 1 0 auto;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
   }
 }
 
@@ -66,16 +80,3 @@ html, body {
 .center-align {
   margin: 0 auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

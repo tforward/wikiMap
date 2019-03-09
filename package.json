@@ -1,5 +1,6 @@
 {
   "name": "wikimap",
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "Wiki Mapper",
   "main": "index.js",

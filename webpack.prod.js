@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
@@ -32,7 +31,14 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"]
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  modules: false
+                }
+              ]
+            ]
           }
         }
       },

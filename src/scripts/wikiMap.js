@@ -2,8 +2,8 @@
 
 import { fetchJsonFrom } from "./data";
 import { addMapMarkers, addToMap } from "./leafletMap";
+import * as R from "ramda"
 
-const R = require("ramda");
 const visitedMarkerPng = require("../images/visited-marker-icon.png");
 const markerShadow = require("../images/marker-shadow.png");
 const favicon = require("../images/favicon.png");

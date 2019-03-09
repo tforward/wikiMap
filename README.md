@@ -1,21 +1,9 @@
-# wikiMap
-wikiMap
+# WikiMap
 
-- TODO
+[WikiMap Demo](https://tforward.github.io/wikiMap/)
 
--  Launch demo github
-   -  Build (WORKING)
-   -  HTML/CSS Auto-BUILD (Currently Manual)
-   -  Tree shaking (Size 256kb Currently)
-   -  Link to GitHub Readme Page on the map
-   -  Add into Portfolio
-
--  Click map for features (DONE)
-   -  Exclude existing Results from Search (DONE)
-   -  If no results (DONE)
-   -  Visited Marker changes colour (DONE)
-   -  Get User-Location Button (Done)
-   -  Marker Style based on type Viewed/NotViewed (DONE)
-   -  When user clicks popup also try to get more results (DONE)
-   -  Responsive (DONE)
-   -  Babel (DONE)
+- Features
+  - Click the map to get Wiki entries
+  - Click the marker pin to a view the Title, an Image, Summary, Location and link to page of that location
+  - Get User-Location button
+  - Responsive Map using Flexbox
