@@ -1,5 +1,7 @@
 # WikiMap
 
+![WikiMap](https://i.imgur.com/e38NIKJ.png)
+
 [WikiMap Demo](https://tforward.github.io/wikiMap/)
 
 - Features
