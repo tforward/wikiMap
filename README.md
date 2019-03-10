@@ -1,10 +1,8 @@
-# WikiMap
+[![WikiMap](https://i.imgur.com/e38NIKJ.png)](https://tforward.github.io/wikiMap/)
 
-![WikiMap](https://i.imgur.com/e38NIKJ.png)
+[Open WikiMap Demo](https://tforward.github.io/wikiMap/)
 
-[WikiMap Demo](https://tforward.github.io/wikiMap/)
-
-- Features
+- Features:
   - Click the map to get Wiki entries
   - Click the marker pin to a view the Title, an Image, Summary, Location and link to page of that location
   - Visited Markers become greyed-out
