@@ -28,11 +28,21 @@ html, body {
   padding: 0 1em;
 }
 
+.title {
+  font-size: calc(3vmin + 0.7rem);
+}
+
+.subtitle {
+  font-size: calc(1vmin + 0.7rem);
+  margin: 1rem 0;
+}
+
 /* Map */
 .map-container {
   height: 100%;
   padding: 1px 2vmin 2vmin 2vmin;
 }
+
 .map-frame {
   height: 100%;
   width: 100%;
